@@ -38,7 +38,7 @@ lognets_permuted <-  foreach(i = seq_along(spp_subset_ind)) %dopar% {
            error = function(e) return(NA))
 }
 
-thresholds_permuted <- findThresholds(neon_dob_permuted, lognets_permuted, pred_vars = terms)
+thresholds_permuted <- findThresholds(neon_dob_permuted, lognets_permuted, terms = terms)
 
 metrics_2d_permuted <- getNicheMetrics2D(neon_dob_permuted, lognets_permuted, thresholds_permuted, "mat_celsius", "map_mm",
                                          r_present_northam, n_bins_per_axis = 10, ncores=8,
@@ -75,7 +75,7 @@ lognets_runif <-  foreach(i = seq_along(spp_subset_ind)) %dopar% {
            error = function(e) return(NA))
 }
 
-thresholds_runif <- findThresholds(neon_dob_runif, lognets_runif, pred_vars = terms)
+thresholds_runif <- findThresholds(neon_dob_runif, lognets_runif, terms = terms)
 
 metrics_2d_runif <- getNicheMetrics2D(neon_dob_runif, lognets_runif, thresholds_runif, "mat_celsius", "map_mm",
                                       r_present_northam, n_bins_per_axis = 10, ncores=8, pred_vars = terms)
@@ -112,7 +112,7 @@ lognets_runif2 <-  foreach(i = seq_along(spp_subset_ind)) %dopar% {
            error = function(e) return(NA))
 }
 
-thresholds_runif2 <- findThresholds(neon_dob_runif, lognets_runif2, pred_vars = terms_climateonly)
+thresholds_runif2 <- findThresholds(neon_dob_runif, lognets_runif2, terms = terms_climateonly)
 
 metrics_2d_runif2 <- getNicheMetrics2D(neon_dob_runif, lognets_runif2, thresholds_runif2, "mat_celsius", "map_mm",
                                        r_present_northam, n_bins_per_axis = 10, ncores=8, pred_vars = terms_climateonly)
@@ -163,7 +163,7 @@ aggregateNullIters2D <- function(physeq, terms, n_iters=10, n_taxa=100, n_bins_p
     }
     stopImplicitCluster()
 
-    thresholds_runif <- suppressMessages(findThresholds(physeq_runif, lognets_runif, pred_vars = terms))
+    thresholds_runif <- suppressMessages(findThresholds(physeq_runif, lognets_runif, terms = terms))
 
     metrics_2d_runif <- suppressMessages(getNicheMetrics2D(physeq_runif, lognets_runif, thresholds_runif, "mat_celsius", "map_mm",
                                                            r_present_northam, n_bins_per_axis = n_bins_per_axis, ncores=ncores, pred_vars = terms, progressbar=FALSE))

@@ -535,3 +535,5 @@ plot(out_present3$map, main="Present analogous environments,\ninflation = 0.25",
 par(mfrow=c(1,1))
 
 env_mask_0.15 <- out_present2$mask
+
+## test for github
