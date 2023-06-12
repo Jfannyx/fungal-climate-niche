@@ -22,6 +22,7 @@ result.z <- matrix(nrow = 45, ncol = 4)
 # computing the relationship between number of species and number of samples
 for (i in 1:length(a)){
   # take out one site
+    cat('\r',paste(paste0(rep("*", round(i/ 1, 0)), collapse = ''), i, collapse = ''))# informs the processing
   neon_sub <- subset_samples(neon, Site==a[i])
   dim1 <- dim(otu_table(neon_sub)) # the number of samples in one site
   species <- vector(length = dim1[1]) # create a vector to save diversity
